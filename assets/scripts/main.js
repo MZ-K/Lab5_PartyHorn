@@ -14,7 +14,7 @@ var airHorn = document.getElementById("radio-air-horn");
 var carHorn = document.getElementById("radio-car-horn");
 var partyHorn = document.getElementById("radio-party-horn");
 
-volNum.addEventListener("change", function() {
+volNum.addEventListener("input", function() {
     let level = volNum.getAttribute("value");
     volSlide.setAttribute("value", level);
     let levelNum = parseFloat(level);
@@ -35,7 +35,7 @@ volNum.addEventListener("change", function() {
     volAudio.setAttribute("volume", levelNum / 100.0);    
 });
 
-volSlide.addEventListener("change", function() {
+volSlide.addEventListener("input", function() {
     let level = volSlide.getAttribute("value");
     volNum.setAttribute("value", level);
     let levelNum = parseFloat(level);
