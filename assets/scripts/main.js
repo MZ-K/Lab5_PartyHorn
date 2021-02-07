@@ -15,12 +15,14 @@ var carHorn = document.getElementById("radio-car-horn");
 var partyHorn = document.getElementById("radio-party-horn");
 
 volNum.addEventListener("input", function() {
-    let level = volNum.getAttribute("value");
-    volSlide.setAttribute("value", level);
+    honkBtn.disabled = false;
+    let level = volNum.value;
+    volSlide.value = level;
     let levelNum = parseFloat(level);
     if (levelNum == 0) {
         volImg.setAttribute("src", "./assets/media/icons/volume-level-0.svg");
         volImg.setAttribute("alt", "No Volume");
+        honkBtn.disabled = true;
     } else if (levelNum <= 33) {
         volImg.setAttribute("src", "./assets/media/icons/volume-level-1.svg");
         volImg.setAttribute("alt", "Min Volume");
@@ -31,17 +33,19 @@ volNum.addEventListener("input", function() {
         volImg.setAttribute("src", "./assets/media/icons/volume-level-3.svg");
         volImg.setAttribute("alt", "Max Volume");
     }
-    honkBtn.setAttribute("disabled", levelNum == 0);
+
     volAudio.setAttribute("volume", levelNum / 100.0);    
 });
 
 volSlide.addEventListener("input", function() {
-    let level = volSlide.getAttribute("value");
-    volNum.setAttribute("value", level);
+    honkBtn.disabled = false;
+    let level = volSlide.value;
+    volNum.value = level;
     let levelNum = parseFloat(level);
     if (levelNum == 0) {
         volImg.setAttribute("src", "./assets/media/icons/volume-level-0.svg");
         volImg.setAttribute("alt", "No Volume");
+        honkBtn.disabled = true;
     } else if (levelNum <= 33) {
         volImg.setAttribute("src", "./assets/media/icons/volume-level-1.svg");
         volImg.setAttribute("alt", "Min Volume");
@@ -52,7 +56,7 @@ volSlide.addEventListener("input", function() {
         volImg.setAttribute("src", "./assets/media/icons/volume-level-3.svg");
         volImg.setAttribute("alt", "Max Volume");
     }
-    honkBtn.setAttribute("disabled", levelNum == 0);
+    
     volAudio.setAttribute("volume", levelNum / 100.0);
 });
 
@@ -74,7 +78,8 @@ partyHorn.addEventListener("change", function() {
     volAudio.setAttribute("src", "./assets/media/audio/party-horn.mp3");
 });
 
-honkBtn.addEventListener("click", function() {
+honkBtn.addEventListener("click", function(event) {
+    event.preventDefault();
     volAudio.play();
 });
 
